@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT-style license that can be
 // found in the LICENSE file.
 
-import RNFetchBlob from '../index.js'
+import wrap from '../utils/wrap'
 import fs from '../fs.js'
 import getUUID from '../utils/uuid'
 import Log from '../utils/log.js'
@@ -236,7 +236,7 @@ export default class Blob extends EventTarget {
     let resPath = blobCacheDir + getBlobName()
     let pass = false
     log.debug('fs.slice new blob will at', resPath)
-    let result = new Blob(RNFetchBlob.wrap(resPath), { type : contentType }, true)
+    let result = new Blob(wrap(resPath), { type : contentType }, true)
     fs.exists(blobCacheDir)
     .then((exist) => {
       if(exist)
